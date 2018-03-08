@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AvivaAutoFramework.Helpers
+{
+    public class LogHelper
+    {
+        // Global Declaration   
+        private static string _logFileName = string.Format("{0:yyyymmddhhmmss}", DateTime.Now);
+        private static StreamWriter _streamW = null;
+
+        // Create a File which can store the log information
+        public static void CreateLogFile()
+        {
+            string dir = @"D:\logfile";
+            if (Directory.Exists(dir))
+            {
+                _streamW = File.AppendText(dir + _logFileName + ".log");
+            }
+            else
+            {
+                Directory.CreateDirectory(dir);
+                _streamW = File.AppendText(dir + _logFileName + ".log");
+            }
+            
+        }
+
+        // Create a method which can write the text in log file
+        public static void Write(String logMessage)
+        {
+            _streamW.Write("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+            _streamW.WriteLine("   {0}", logMessage);
+            _streamW.Flush();
+        }
+
+    }
+}
