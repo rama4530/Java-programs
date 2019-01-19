@@ -1,0 +1,20 @@
+Feature: To Test Register for Online Banking functionality
+
+Description: "Purpose of this feature file is to test the Register for online banking funcionality with both valid and invalid details."
+
+Background: User navigates to step 2
+	Given Navigate to hongleong connect login page
+	When I click on Register for Online Banking button
+	And I select Hong Leong Credit Card option
+	And I click on on Register Now button
+	Then I should be on credeit card details page
+
+Scenario: Test register for banking functionality as new user with valid data
+	When I select Verification ID as Temporary ID
+	And I enter any Principal Card Number in principal card number field  
+	And I enter any Temporary ID in temporary id field
+	And I select ID Type as Police Identification 
+	And I enter any ID number in ID number field
+	When I enter Captcha and click Next button
+	Then I should be able to navigate to Step3 
+	 		
